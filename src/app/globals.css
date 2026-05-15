@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-display, 'Inter', sans-serif);
+  background: #f9f7f0;
+}
+
+@layer components {
+  .upload-zone {
+    @apply border-2 border-dashed border-ink-200 bg-ink-50 transition-colors;
+  }
+  .upload-zone.dragover,
+  .upload-zone:hover {
+    @apply border-brand-400 bg-brand-50;
+  }
+  .yellow-rule {
+    @apply w-10 h-1 bg-brand-400 rounded-full mb-3;
+  }
+  .page-header {
+    @apply bg-ink-900 border-b border-ink-800 py-8;
+  }
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm;
+  }
+}
+
+/* Product card – bottom accent on hover */
+.hp-card {
+  position: relative;
+  overflow: hidden;
+}
+.hp-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #fbbf24;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+.hp-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* Process steps – horizontal connector line on desktop */
+.process-connector {
+  position: relative;
+}
+@media (min-width: 768px) {
+  .process-connector::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: calc(12.5% + 24px);
+    right: calc(12.5% + 24px);
+    height: 1px;
+    background: rgba(251, 191, 36, 0.2);
+    z-index: 0;
+  }
+}
+
+/* Floating WhatsApp button */
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 99;
+  width: 58px;
+  height: 58px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+  transition: all 0.2s;
+  animation: wa-bounce 3s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.1);
+  background: #16a34a;
+  animation: none;
+}
+.wa-float i {
+  color: #fff;
+  font-size: 28px;
+}
+@keyframes wa-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
